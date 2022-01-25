@@ -1,0 +1,20 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: "API Gateway and Step Functions Integration"
+paths:
+  "/prismaStep":
+    post:
+      description: "This endpoint starts execution of an AWS Step Functions workflow"
+      responses:
+        200:
+           description: "The Step functions call was successful"
+        400:
+           description: "400 Error. Please check logs"
+        500:
+           description: "500 Error. Please check logs"
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:eu-west-1:states:action/StartExecution"
+        passthroughBehavior: "when_no_templates" 
+        httpMethod: "POST"
+        type: "aws" 
